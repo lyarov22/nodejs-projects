@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/dashboardStyle.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <%- include('./header.ejs') %>
+    <div class="container">
+        <% if (session.user && session.user.role === 'admin') { %>
+            <h1>You are logged as Admin</h1>
+            <div class="buttons">
+                <a href="/dashboard/user-data">Add User Data</a>
+                <a href="/dashboard/profile/<%= session.user._id %>">View Profile</a>
+            </div>
+            
+        <% } else if (session.user && session.user.role === 'user') { %>
+            <h1>You are logged as User</h1>
+        <% } else { %>
+            <h1>Please Login</h1>
+        <% } %>
+    </div>
+    
+</body>
+</html>
